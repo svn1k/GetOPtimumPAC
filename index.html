@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Pac-Man Optimum</title>
+    <meta name="description" content="Pac-Man Optimum — аркадная игра в стиле классического Pac-Man с уникальными лабиринтами">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header -->
+        <header id="game-header">
+            <div class="header-left">
+                <span class="logo-icon">∞</span>
+                <span class="logo-text">ptimum</span>
+            </div>
+            <div class="header-center">
+                <div class="score-display">
+                    <span class="score-label">SCORE</span>
+                    <span id="score-value" class="score-value">0</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="score-display">
+                    <span class="score-label">HIGH</span>
+                    <span id="highscore-value" class="score-value">0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Game Info Bar -->
+        <div id="game-info-bar">
+            <div class="lives-container" id="lives-container"></div>
+            <div class="level-display">
+                <span class="level-label">LVL</span>
+                <span id="level-value" class="level-value">1</span>
+            </div>
+        </div>
+
+        <!-- Canvas Wrapper -->
+        <div id="canvas-wrapper">
+            <canvas id="game-canvas"></canvas>
+
+            <!-- Start Screen Overlay -->
+            <!-- Start Screen Overlay -->
+            <div id="start-screen" class="overlay">
+                <div class="overlay-content">
+                    <div class="title-logo">
+                        <span class="title-icon">∞</span>
+                        <span class="title-text">ptimum</span>
+                    </div>
+                    <h1 class="game-title">PAC-MAN</h1>
+                    <p class="subtitle">7 UNIQUE MAZES</p>
+
+                    <!-- Выбор лабиринта -->
+                    <div class="level-selection">
+                        <label>SELECT MAZE</label>
+                        <div class="level-carousel">
+                            <button id="btn-prev-level" class="nav-btn">◀</button>
+                            <div class="level-display">
+                                <span class="lvl-side" id="lvl-prev">7</span>
+                                <span class="lvl-active" id="lvl-curr">1</span>
+                                <span class="lvl-side" id="lvl-next">2</span>
+                            </div>
+                            <button id="btn-next-level" class="nav-btn">▶</button>
+                        </div>
+                    </div>
+
+                    <!-- Выбор скина -->
+                    <div class="skin-selection">
+                        <label>SELECT SKIN</label>
+                        <div class="skin-carousel">
+                            <button id="btn-prev-skin" class="nav-btn">◀</button>
+                            <div class="skin-display">
+                                <canvas id="skin-preview-canvas" width="64" height="64"></canvas>
+                            </div>
+                            <button id="btn-next-skin" class="nav-btn">▶</button>
+                        </div>
+                    </div>
+
+                    <button id="btn-start" class="btn-primary">
+                        <span>PLAY</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                    <p class="controls-hint">
+                        Arrow keys / WASD / Swipe to move
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pause Overlay -->
+            <div id="pause-screen" class="overlay hidden">
+                <div class="overlay-content">
+                    <h2 class="pause-title">PAUSED</h2>
+                    <button id="btn-resume" class="btn-primary">
+                        <span>RESUME</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div id="gameover-screen" class="overlay hidden">
+                <div class="overlay-content">
+                    <h2 class="gameover-title">GAME OVER</h2>
+                    <p class="final-score">Score: <span id="final-score">0</span></p>
+                    <button id="btn-restart" class="btn-primary">
+                        <span>PLAY AGAIN</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Level Complete Overlay -->
+            <div id="levelcomplete-screen" class="overlay hidden">
+                <div class="overlay-content">
+                    <h2 class="level-title">LEVEL COMPLETE!</h2>
+                    <p class="level-score">Score: <span id="level-score">0</span></p>
+                    <button id="btn-next" class="btn-primary">
+                        <span>NEXT LEVEL</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Win Overlay -->
+            <div id="win-screen" class="overlay hidden">
+                <div class="overlay-content">
+                    <h2 class="win-title">🎉 YOU WIN! 🎉</h2>
+                    <p class="win-score">Final Score: <span id="win-score">0</span></p>
+                    <button id="btn-playagain" class="btn-primary">
+                        <span>PLAY AGAIN</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div id="mobile-controls">
+            <div class="dpad">
+                <button class="dpad-btn dpad-up" data-dir="up">▲</button>
+                <button class="dpad-btn dpad-left" data-dir="left">◄</button>
+                <button class="dpad-btn dpad-center"></button>
+                <button class="dpad-btn dpad-right" data-dir="right">►</button>
+                <button class="dpad-btn dpad-down" data-dir="down">▼</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
