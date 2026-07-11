@@ -305,10 +305,10 @@ class PacManGame {
 
     _resize() {
         const wrapper = document.getElementById('canvas-wrapper');
-        const maxW = Math.min(wrapper.clientWidth - 16, 600);
+        const maxW = Math.min(wrapper.clientWidth - 16, 880);
         const maxH = wrapper.clientHeight - 16;
         const ts = Math.floor(Math.min(maxW / COLS, maxH / ROWS));
-        this.tileSize = Math.max(12, Math.min(ts, 32));
+        this.tileSize = Math.max(12, Math.min(ts, 42));
         this.canvas.width = COLS * this.tileSize;
         this.canvas.height = ROWS * this.tileSize;
     }
@@ -385,6 +385,11 @@ class PacManGame {
             this.selectedSkin = (this.selectedSkin + 1) % this.totalSkins;
         });
 
+        document.getElementById('btn-goto-setup').addEventListener('click', () => {
+            this._showGameContainer();
+            this._showOverlay('start-screen');
+        });
+        document.getElementById('btn-back-landing').addEventListener('click', () => this._showLanding());
         document.getElementById('btn-start').addEventListener('click', () => { this.sound.resume(); this._startGame(); });
         document.getElementById('btn-resume').addEventListener('click', () => this._resume());
         document.getElementById('btn-restart').addEventListener('click', () => { this._startGame(); });
@@ -399,6 +404,17 @@ class PacManGame {
         if (el) el.classList.remove('hidden');
     }
     _hideAllOverlays() { document.querySelectorAll('.overlay').forEach(el => el.classList.add('hidden')); }
+
+    _showLanding() {
+        document.getElementById('game-container').classList.add('page-hidden');
+        document.getElementById('landing-page').classList.remove('page-hidden');
+    }
+
+    _showGameContainer() {
+        document.getElementById('landing-page').classList.add('page-hidden');
+        document.getElementById('game-container').classList.remove('page-hidden');
+        this._resize();
+    }
 
     _updateUI() {
         document.getElementById('score-value').textContent = this.score;

@@ -11,7 +11,88 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-container">
+    <!-- ============================================
+         Landing Page (full home page: hero + info + play)
+         ============================================ -->
+    <div id="landing-page">
+        <div class="landing-scroll">
+            <nav class="landing-nav">
+                <span class="logo-icon">∞</span><span class="logo-text">ptimum</span>
+            </nav>
+
+            <section class="landing-hero">
+                <div class="hero-inner">
+                    <h1 class="hero-title">PAC-MAN</h1>
+                    <span class="hero-title-accent">O P T I M U M</span>
+                    <p class="hero-tagline">7 лабиринтов. 8 скинов. Один пакман.</p>
+                    <button id="btn-goto-setup" class="btn-primary hero-cta">
+                        <span>ИГРАТЬ</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                    <p class="hero-hint">Стрелки / WASD / свайп — прямо в браузере, без установки</p>
+                </div>
+            </section>
+
+            <section class="landing-section">
+                <p class="landing-eyebrow">Об игре</p>
+                <h2 class="landing-heading">Классика, пересобранная с нуля</h2>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <span class="feature-dot"></span>
+                        <h3>7 лабиринтов</h3>
+                        <p>Каждый — со своей структурой и уровнем сложности</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-dot feature-dot--alt"></span>
+                        <h3>8 скинов</h3>
+                        <p>От классического пакмана до звёзд и облаков</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-dot"></span>
+                        <h3>Умные призраки</h3>
+                        <p>Погоня, патруль и испуг — честное поведение, как в оригинале</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-dot feature-dot--alt"></span>
+                        <h3>Power-pellets</h3>
+                        <p>Временная неуязвимость и очки за охоту на призраков</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-dot"></span>
+                        <h3>Любое устройство</h3>
+                        <p>Стрелки, WASD или свайп — играйте с телефона или компьютера</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="feature-dot feature-dot--alt"></span>
+                        <h3>Локальный рекорд</h3>
+                        <p>Лучший счёт сохраняется в браузере, без регистрации</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="landing-section landing-section--alt">
+                <div class="landing-inner">
+                    <p class="landing-eyebrow">Проект</p>
+                    <h2 class="landing-heading">GETOPTIMUM</h2>
+                    <p class="landing-text">
+                        Optimum — серия небольших браузерных игр и экспериментов. Каждая пишется с нуля, без готовых движков, ради удовольствия от процесса. Pac-Man Optimum — часть этой серии.
+                    </p>
+                    <div class="badge-row">
+                        <span class="badge">Чистый JS</span>
+                        <span class="badge">HTML5 Canvas</span>
+                        <span class="badge">Без рекламы</span>
+                        <span class="badge">Без трекеров</span>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="landing-footer">
+                <strong>∞ptimum</strong> · сделано вечерами, с удовольствием
+            </footer>
+        </div>
+    </div>
+
+    <div id="game-container" class="page-hidden">
         <!-- Header -->
         <header id="game-header">
             <div class="header-left">
@@ -45,9 +126,9 @@
         <div id="canvas-wrapper">
             <canvas id="game-canvas"></canvas>
 
-            <!-- Start Screen Overlay -->
-            <!-- Start Screen Overlay -->
-            <div id="start-screen" class="overlay">
+            <!-- Setup Screen Overlay (maze + skin selection) -->
+            <div id="start-screen" class="overlay hidden">
+                <button id="btn-back-landing" class="info-btn" aria-label="На главную">←</button>
                 <div class="overlay-content">
                     <div class="title-logo">
                         <span class="title-icon">∞</span>
