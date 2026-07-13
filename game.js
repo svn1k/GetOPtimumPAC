@@ -726,38 +726,51 @@ class PacManGame {
 
     _renderMaze(ctx, ts) {
         if (!this.maze) return;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
         const isW = (c, r) => (c < 0 || c >= COLS || r < 0 || r >= ROWS) || [T_WALL, T_GWALL, T_GDOOR].includes(this.maze[r][c]);
 
-        // Fix Visual Bug: Draw clean solid shadow without overlapping path opacities
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
-        ctx.shadowOffsetY = 4;
-        ctx.shadowBlur = 6;
-        ctx.lineWidth = ts * 0.75;
+        // Rounded-rect path helper
+        const rr = (x, y, w, h, rad) => {
+            const rc = Math.max(0, Math.min(rad, w / 2, h / 2));
+            ctx.moveTo(x + rc, y);
+            ctx.arcTo(x + w, y, x + w, y + h, rc);
+            ctx.arcTo(x + w, y + h, x, y + h, rc);
+            ctx.arcTo(x, y + h, x, y, rc);
+            ctx.arcTo(x, y, x + w, y, rc);
+            ctx.closePath();
+        };
 
-        ctx.beginPath();
-        for (let r = 0; r < ROWS; r++) {
-            for (let c = 0; c < COLS; c++) {
-                if (this.maze[r][c] === T_WALL || this.maze[r][c] === T_GWALL) {
-                    const cx = c * ts + ts / 2, cy = r * ts + ts / 2;
-                    ctx.moveTo(cx, cy); ctx.lineTo(cx + 0.1, cy);
-                    if (isW(c + 1, r)) ctx.lineTo((c + 1) * ts + ts / 2, cy);
-                    ctx.moveTo(cx, cy);
-                    if (isW(c, r + 1)) ctx.lineTo(cx, (r + 1) * ts + ts / 2);
+        // Each wall tile is filled as a rounded block, bridged to its right/bottom
+        // neighbor when that neighbor is also a wall. Filling (instead of stroking a
+        // thin skeleton) avoids seams on long runs and avoids "bullseye ring" artifacts
+        // that a near-zero-length stroked path produces on isolated single wall tiles.
+        const drawLayer = (pad, rad, color, withShadow) => {
+            ctx.beginPath();
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    if (this.maze[r][c] !== T_WALL && this.maze[r][c] !== T_GWALL) continue;
+                    const x = c * ts, y = r * ts;
+                    rr(x + pad, y + pad, ts - pad * 2, ts - pad * 2, rad);
+                    if (c + 1 < COLS && isW(c + 1, r)) rr(x + ts / 2, y + pad, ts, ts - pad * 2, 0);
+                    if (r + 1 < ROWS && isW(c, r + 1)) rr(x + pad, y + ts / 2, ts - pad * 2, ts, 0);
                 }
             }
-        }
-        ctx.strokeStyle = '#282828';
-        ctx.stroke();
+            if (withShadow) {
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+                ctx.shadowOffsetY = ts * 0.1;
+                ctx.shadowBlur = ts * 0.12;
+            } else {
+                ctx.shadowColor = 'transparent';
+                ctx.shadowOffsetY = 0;
+                ctx.shadowBlur = 0;
+            }
+            ctx.fillStyle = color;
+            ctx.fill();
+        };
 
-        // Reset Shadow
-        ctx.shadowColor = 'transparent';
-        ctx.shadowOffsetY = 0;
-        ctx.shadowBlur = 0;
-
-        ctx.lineWidth = ts * 0.5; ctx.strokeStyle = '#353535'; ctx.stroke();
-        ctx.lineWidth = ts * 0.4; ctx.strokeStyle = '#222'; ctx.stroke();
+        drawLayer(ts * 0.08, ts * 0.26, '#282828', true);
+        drawLayer(ts * 0.18, ts * 0.18, '#353535', false);
+        drawLayer(ts * 0.27, ts * 0.11, '#222', false);
+        ctx.shadowColor = 'transparent'; ctx.shadowOffsetY = 0; ctx.shadowBlur = 0;
 
         for (let r = 0; r < ROWS; r++) {
             for (let c = 0; c < COLS; c++) {
