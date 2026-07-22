@@ -9,8 +9,8 @@
 //    - "Project URL"        -> SUPABASE_URL
 //    - "anon public" API key -> SUPABASE_ANON_KEY
 // ---------------------------------------------------------------
-const SUPABASE_URL = 'https://YOUR-PROJECT-REF.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR-ANON-PUBLIC-KEY';
+const SUPABASE_URL = 'https://aqnpgptlqqekekkbzshq.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxbnBncHRscXFla2Vra2J6c2hxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ3NDY2MzcsImV4cCI6MjEwMDMyMjYzN30.xdsysVKTsLh7FSOIXo4ovL-dguPHBunrSOjIk0HfTAs';
 
 const NICKNAME_KEY = 'pacOptNickname';
 const LEADERBOARD_LIMIT = 20;
