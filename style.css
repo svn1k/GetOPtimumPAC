@@ -437,6 +437,25 @@ inset 0 0 60px rgba(100, 100, 140, 0.05);
     opacity: 1;
 }
 
+.btn-secondary {
+    padding: 10px 26px;
+    border-radius: 50px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-secondary);
+    font-family: var(--font-main);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+    border-color: rgba(255, 215, 0, 0.4);
+    color: var(--gold);
+}
+
 /* ============================================
  *  Mobile D-Pad Controls
  *  ============================================ */
@@ -638,15 +657,85 @@ background: radial-gradient(ellipse at top, #17172e 0%, #0a0a0f 65%);
 }
 
 .landing-nav {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
     padding: 22px 16px 0;
+    max-width: var(--layout-max-width);
+    margin: 0 auto;
+    width: 100%;
 }
 
 .landing-nav .logo-icon,
 .landing-nav .logo-text {
     font-size: 18px;
+}
+
+.landing-logo {
+    grid-column: 2;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+}
+
+.landing-nav-side {
+    display: flex;
+    align-items: center;
+    min-height: 34px;
+}
+
+.landing-nav-side--left {
+    grid-column: 1;
+    justify-self: start;
+}
+
+.landing-nav-side--right {
+    grid-column: 3;
+    justify-self: end;
+}
+
+.lb-nav-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-secondary);
+    font-family: var(--font-main);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+.lb-nav-btn:hover {
+    color: var(--gold);
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
+.lb-icon-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-family: var(--font-main);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.lb-icon-btn:hover {
+    color: var(--gold);
+    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
 }
 
 /* --- Hero --- */
@@ -879,4 +968,239 @@ background: radial-gradient(ellipse at top, #17172e 0%, #0a0a0f 65%);
     .landing-section--alt {
         padding: 38px 18px;
     }
+}
+
+/* ============================================
+ *  Nickname Gate (global modal)
+ *  ============================================ */
+.global-modal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.global-modal.hidden {
+    display: none;
+}
+
+.global-modal-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.nickname-title {
+    font-size: 22px;
+    font-weight: 900;
+    margin-top: 6px;
+}
+
+.nickname-subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.nickname-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.nickname-input {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.nickname-input:focus {
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+.nickname-error {
+    font-size: 12px;
+    color: #ff6b6b;
+    min-height: 14px;
+}
+
+/* ============================================
+ *  Leaderboard Page
+ *  ============================================ */
+#leaderboard-page {
+width: 100%;
+height: 100%;
+background: radial-gradient(ellipse at top, #17172e 0%, #0a0a0f 65%);
+}
+
+.lb-hero {
+    text-align: center;
+    padding: 36px 20px 6px;
+}
+
+.lb-title {
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #ffd700, #ffaa00, #ff8800);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(255, 170, 0, 0.3));
+}
+
+.lb-playing-as {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.lb-playing-as strong {
+    color: var(--text-primary);
+}
+
+.lb-change-btn {
+    margin-top: 6px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-main);
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.lb-change-btn:hover {
+    opacity: 1;
+    color: var(--gold);
+}
+
+.lb-body {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 22px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.lb-panel {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 6px 0;
+}
+
+.lb-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lb-refresh-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.lb-refresh-btn:hover {
+    color: var(--gold);
+    transform: rotate(90deg);
+}
+
+.lb-state {
+    text-align: center;
+    padding: 22px 18px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.lb-state:empty {
+    display: none;
+}
+
+.lb-list {
+    list-style: none;
+}
+
+.lb-row {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.lb-row:last-child {
+    border-bottom: none;
+}
+
+.lb-row--me {
+    background: rgba(255, 215, 0, 0.06);
+}
+
+.lb-rank {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.lb-rank--gold { color: #ffd700; }
+.lb-rank--silver { color: #d8d8e8; }
+.lb-rank--bronze { color: #ffb866; }
+
+.lb-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.lb-score {
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--gold);
+}
+
+.lb-play-btn {
+    width: 100%;
+    max-width: 260px;
 }

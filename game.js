@@ -385,9 +385,11 @@ class PacManGame {
             this.selectedSkin = (this.selectedSkin + 1) % this.totalSkins;
         });
 
-        document.getElementById('btn-goto-setup').addEventListener('click', () => {
-            this._showGameContainer();
-            this._showOverlay('start-screen');
+        document.querySelectorAll('.js-goto-setup').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this._showGameContainer();
+                this._showOverlay('start-screen');
+            });
         });
         document.getElementById('btn-back-landing').addEventListener('click', () => this._showLanding());
         document.getElementById('btn-start').addEventListener('click', () => { this.sound.resume(); this._startGame(); });
@@ -406,13 +408,11 @@ class PacManGame {
     _hideAllOverlays() { document.querySelectorAll('.overlay').forEach(el => el.classList.add('hidden')); }
 
     _showLanding() {
-        document.getElementById('game-container').classList.add('page-hidden');
-        document.getElementById('landing-page').classList.remove('page-hidden');
+        window.showAppPage('landing-page');
     }
 
     _showGameContainer() {
-        document.getElementById('landing-page').classList.add('page-hidden');
-        document.getElementById('game-container').classList.remove('page-hidden');
+        window.showAppPage('game-container');
         this._resize();
     }
 
@@ -478,6 +478,7 @@ class PacManGame {
             document.getElementById('final-score').textContent = this.score;
             this._showOverlay('gameover-screen');
             this._saveHighScore();
+            if (window.PacLeaderboard) window.PacLeaderboard.submitScore(this.score, this.level + 1);
         } else {
             this.pac.x = PAC_START.x; this.pac.y = PAC_START.y; this.pac.dir = DIR_NONE; this.pac.nextDir = DIR_NONE; this.pac.progress = 0;
             for (let i = 0; i < 4; i++) {
@@ -556,6 +557,7 @@ class PacManGame {
                 if (this.level >= MAZES.length - 1) {
                     this.state = GS_WIN; document.getElementById('win-score').textContent = this.score;
                     this._showOverlay('win-screen'); this._saveHighScore();
+                    if (window.PacLeaderboard) window.PacLeaderboard.submitScore(this.score, this.level + 1);
                 } else {
                     document.getElementById('level-score').textContent = this.score;
                     this._showOverlay('levelcomplete-screen'); this.state = GS_LEVELWIN;
@@ -943,4 +945,4 @@ class PacManGame {
     }
 }
 
-window.addEventListener('DOMContentLoaded', () => new PacManGame());
+window.addEventListener('DOMContentLoaded', () => { window.pacManGame = new PacManGame(); });

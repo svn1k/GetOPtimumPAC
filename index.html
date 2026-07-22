@@ -12,12 +12,38 @@
 </head>
 <body>
     <!-- ============================================
+         Nickname Gate (shown once, before first visit to the leaderboard)
+         ============================================ -->
+    <div id="nickname-modal" class="global-modal hidden">
+        <div class="global-modal-content">
+            <div class="title-logo">
+                <span class="title-icon">∞</span>
+                <span class="title-text">ptimum</span>
+            </div>
+            <h2 class="nickname-title">Choose a nickname</h2>
+            <p class="nickname-subtitle">It'll show up on the leaderboard</p>
+            <form id="nickname-form" class="nickname-form">
+                <input id="nickname-input" class="nickname-input" type="text" maxlength="20" autocomplete="off" placeholder="Your nickname" />
+                <p id="nickname-error" class="nickname-error"></p>
+                <button type="submit" class="btn-primary">
+                    <span>CONTINUE</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================
          Landing Page (full home page: hero + info + play)
          ============================================ -->
-    <div id="landing-page">
+    <div id="landing-page" class="app-page">
         <div class="landing-scroll">
             <nav class="landing-nav">
-                <span class="logo-icon">∞</span><span class="logo-text">ptimum</span>
+                <span class="landing-nav-side landing-nav-side--left"></span>
+                <div class="landing-logo"><span class="logo-icon">∞</span><span class="logo-text">ptimum</span></div>
+                <span class="landing-nav-side landing-nav-side--right">
+                    <button class="js-open-leaderboard lb-nav-btn" aria-label="Leaderboard">🏆 Leaderboard</button>
+                </span>
             </nav>
 
             <section class="landing-hero">
@@ -25,7 +51,7 @@
                     <h1 class="hero-title">PAC-MAN</h1>
                     <span class="hero-title-accent">O P T I M U M</span>
                     <p class="hero-tagline">7 mazes. 8 skins. One Pac-Man.</p>
-                    <button id="btn-goto-setup" class="btn-primary hero-cta">
+                    <button id="btn-goto-setup" class="btn-primary hero-cta js-goto-setup">
                         <span>PLAY</span>
                         <div class="btn-glow"></div>
                     </button>
@@ -96,7 +122,48 @@
         </div>
     </div>
 
-    <div id="game-container" class="page-hidden">
+    <!-- ============================================
+         Leaderboard Page
+         ============================================ -->
+    <div id="leaderboard-page" class="app-page page-hidden">
+        <div class="landing-scroll">
+            <nav class="landing-nav">
+                <span class="landing-nav-side landing-nav-side--left">
+                    <button class="js-open-landing lb-icon-btn" aria-label="Back to home">←</button>
+                </span>
+                <div class="landing-logo"><span class="logo-icon">∞</span><span class="logo-text">ptimum</span></div>
+                <span class="landing-nav-side landing-nav-side--right"></span>
+            </nav>
+
+            <section class="lb-hero">
+                <h1 class="lb-title">LEADERBOARD</h1>
+                <p id="lb-playing-as" class="lb-playing-as"></p>
+                <button id="btn-change-nickname" class="lb-change-btn">change nickname</button>
+            </section>
+
+            <section class="lb-body">
+                <div class="lb-panel">
+                    <div class="lb-panel-header">
+                        <span>TOP PLAYERS</span>
+                        <button id="btn-refresh-leaderboard" class="lb-refresh-btn" aria-label="Refresh">⟳</button>
+                    </div>
+                    <p id="leaderboard-state" class="lb-state"></p>
+                    <ol id="leaderboard-list" class="lb-list"></ol>
+                </div>
+
+                <button id="btn-goto-setup-lb" class="btn-primary js-goto-setup lb-play-btn">
+                    <span>PLAY</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </section>
+
+            <footer class="landing-footer">
+                <strong>∞ptimum</strong> · made in the evenings, for fun
+            </footer>
+        </div>
+    </div>
+
+    <div id="game-container" class="app-page page-hidden">
         <!-- Header -->
         <header id="game-header">
             <div class="header-left">
@@ -197,6 +264,7 @@
                         <span>PLAY AGAIN</span>
                         <div class="btn-glow"></div>
                     </button>
+                    <button class="js-open-leaderboard btn-secondary">🏆 LEADERBOARD</button>
                 </div>
             </div>
 
@@ -221,6 +289,7 @@
                         <span>PLAY AGAIN</span>
                         <div class="btn-glow"></div>
                     </button>
+                    <button class="js-open-leaderboard btn-secondary">🏆 LEADERBOARD</button>
                 </div>
             </div>
         </div>
@@ -237,6 +306,8 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="leaderboard.js"></script>
     <script src="game.js"></script>
 </body>
 </html>
