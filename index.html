@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Pac-Man Optimum</title>
-    <meta name="description" content="Pac-Man Optimum — аркадная игра в стиле классического Pac-Man с уникальными лабиринтами">
+    <meta name="description" content="Pac-Man Optimum — a classic-style Pac-Man arcade game with unique mazes">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -24,61 +24,61 @@
                 <div class="hero-inner">
                     <h1 class="hero-title">PAC-MAN</h1>
                     <span class="hero-title-accent">O P T I M U M</span>
-                    <p class="hero-tagline">7 лабиринтов. 8 скинов. Один пакман.</p>
+                    <p class="hero-tagline">7 mazes. 8 skins. One Pac-Man.</p>
                     <button id="btn-goto-setup" class="btn-primary hero-cta">
-                        <span>ИГРАТЬ</span>
+                        <span>PLAY</span>
                         <div class="btn-glow"></div>
                     </button>
-                    <p class="hero-hint">Стрелки / WASD / свайп — прямо в браузере, без установки</p>
+                    <p class="hero-hint">Arrow keys / WASD / swipe — right in your browser, no install needed</p>
                 </div>
             </section>
 
             <section class="landing-section">
-                <p class="landing-eyebrow">Об игре</p>
-                <h2 class="landing-heading">Классика, пересобранная с нуля</h2>
+                <p class="landing-eyebrow">About the game</p>
+                <h2 class="landing-heading">A classic, rebuilt from scratch</h2>
                 <div class="feature-grid">
                     <article class="feature-card">
                         <span class="feature-dot"></span>
-                        <h3>7 лабиринтов</h3>
-                        <p>Каждый — со своей структурой и уровнем сложности</p>
+                        <h3>7 mazes</h3>
+                        <p>Each with its own layout and difficulty</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-dot feature-dot--alt"></span>
-                        <h3>8 скинов</h3>
-                        <p>От классического пакмана до звёзд и облаков</p>
+                        <h3>8 skins</h3>
+                        <p>From the classic Pac-Man to stars and clouds</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-dot"></span>
-                        <h3>Умные призраки</h3>
-                        <p>Погоня, патруль и испуг — честное поведение, как в оригинале</p>
+                        <h3>Smart ghosts</h3>
+                        <p>Chase, scatter, and frightened — honest AI, just like the original</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-dot feature-dot--alt"></span>
                         <h3>Power-pellets</h3>
-                        <p>Временная неуязвимость и очки за охоту на призраков</p>
+                        <p>Temporary invincibility and bonus points for hunting ghosts</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-dot"></span>
-                        <h3>Любое устройство</h3>
-                        <p>Стрелки, WASD или свайп — играйте с телефона или компьютера</p>
+                        <h3>Any device</h3>
+                        <p>Arrow keys, WASD, or swipe — play from your phone or computer</p>
                     </article>
                     <article class="feature-card">
                         <span class="feature-dot feature-dot--alt"></span>
-                        <h3>Локальный рекорд</h3>
-                        <p>Лучший счёт сохраняется в браузере, без регистрации</p>
+                        <h3>Local high score</h3>
+                        <p>Your best score is saved right in the browser, no sign-up needed</p>
                     </article>
                 </div>
             </section>
 
             <section class="landing-section landing-section--alt">
                 <div class="landing-inner">
-                    <p class="landing-eyebrow">Проект</p>
+                    <p class="landing-eyebrow">Project</p>
                     <h2 class="landing-heading">GETOPTIMUM</h2>
                     <p class="landing-text">
-                        Optimum — децентрализованный сетевой протокол для web3, ускоряющий передачу данных (gossip) между узлами по всему миру с помощью Random Linear Network Coding (RLNC) — технологии кодирования, которую развивали под руководством профессора Мюриэль Медар (MIT). Флагманский продукт — mump2p: быстрый и отказоустойчивый протокол доставки блоков, блобов и транзакций, совместимый с libp2p и GossipSub.
+                        Optimum is a decentralized network protocol for web3 that speeds up gossip data propagation across nodes worldwide using Random Linear Network Coding (RLNC) — a coding technique developed under the supervision of Professor Muriel Médard (MIT). Its flagship product is mump2p: a fast, fault-tolerant protocol for delivering blocks, blobs, and transactions, compatible with libp2p and GossipSub.
                     </p>
                     <p class="landing-text">
-                        Pac-Man Optimum — игровой сайд-проект бренда: дань фирменному ∞ptimum, не связанная напрямую с самим протоколом.
+                        Pac-Man Optimum is a fun side project from the brand — a nod to the ∞ptimum name, not directly tied to the protocol itself.
                     </p>
                     <div class="badge-row">
                         <span class="badge">RLNC</span>
@@ -91,7 +91,7 @@
             </section>
 
             <footer class="landing-footer">
-                <strong>∞ptimum</strong> · сделано вечерами, с удовольствием
+                <strong>∞ptimum</strong> · made in the evenings, for fun
             </footer>
         </div>
     </div>
@@ -132,7 +132,7 @@
 
             <!-- Setup Screen Overlay (maze + skin selection) -->
             <div id="start-screen" class="overlay hidden">
-                <button id="btn-back-landing" class="info-btn" aria-label="На главную">←</button>
+                <button id="btn-back-landing" class="info-btn" aria-label="Back to home">←</button>
                 <div class="overlay-content">
                     <div class="title-logo">
                         <span class="title-icon">∞</span>
@@ -141,7 +141,7 @@
                     <h1 class="game-title">PAC-MAN</h1>
                     <p class="subtitle">7 UNIQUE MAZES</p>
 
-                    <!-- Выбор лабиринта -->
+                    <!-- Maze selection -->
                     <div class="level-selection">
                         <label>SELECT MAZE</label>
                         <div class="level-carousel">
@@ -155,7 +155,7 @@
                         </div>
                     </div>
 
-                    <!-- Выбор скина -->
+                    <!-- Skin selection -->
                     <div class="skin-selection">
                         <label>SELECT SKIN</label>
                         <div class="skin-carousel">
