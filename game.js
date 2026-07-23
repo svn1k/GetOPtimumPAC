@@ -319,6 +319,8 @@ class PacManGame {
             return null;
         };
         window.addEventListener('keydown', (e) => {
+            const tag = e.target && e.target.tagName;
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target && e.target.isContentEditable)) return;
             this.sound.resume();
             if (['ArrowUp','w','W'].includes(e.key)) { this.inputDir = DIR_UP; e.preventDefault(); }
             if (['ArrowDown','s','S'].includes(e.key)) { this.inputDir = DIR_DOWN; e.preventDefault(); }
